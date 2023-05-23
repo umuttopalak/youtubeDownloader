@@ -1,9 +1,11 @@
 # youtubeDownloader
-It helps to download mp3 files from youtube
+It downloads mp3 files from youtube
 
-To run application;
-run the exe file at dist folder or open main.py file then run it.
+# Installing requirements
+> pip install requirements.txt
 
-# for running from main.py
-pip install requirements.py
+# To build application;<br>
+> pyinstaller --onefile --windowed --icon=youtube.ico --name mp3downloader main.py
 
+# To start application from .exe file 
+Open dist folder then double click to file
