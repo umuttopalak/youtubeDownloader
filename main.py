@@ -16,8 +16,9 @@ def on_click_btn1():
         result = download(str(input.get()) , lang_utils.get_translation(languagesMenu.get()))
         label.config(text=result)
 
+languagesMenu = tk.StringVar()
 
-label = tk.Label(window, text="Enter the music link then click the download button", font=('Calibri 15 bold'))
+label = tk.Label(window, text=lang_utils.get_translation(languagesMenu.get())['label_text'], font=('Calibri 15 bold'))
 label.pack(pady=20)
 
 
@@ -28,11 +29,11 @@ input = tk.Entry(frame, width=50)
 input.pack(side="left", padx=10)
 
 
-btn1 = tk.Button(frame, text="Download", command=on_click_btn1)
+btn1 = tk.Button(frame, text=lang_utils.get_translation(languagesMenu.get())['button_text'], command=on_click_btn1)
 btn1.pack(side="left", padx=10)
 
-languagesMenu = tk.StringVar()
-languagesMenu.set("Select any language")
+
+languagesMenu.set("Select Language")
 
 drop = tk.OptionMenu(window , languagesMenu , "TR" , "EN")
 drop.pack(side="right" , padx=20)

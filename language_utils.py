@@ -7,8 +7,7 @@ def get_translation(selected_language):
     elif selected_language == "TR":
         return tr.translations
     else:
-        # Varsayılan dil veya desteklenmeyen dil durumunda
-        return en.translations  # Varsayılan olarak İngilizce kullan
+        return tr.translations 
 
 
 def on_language_change(languagesMenu, label, btn1):
@@ -19,8 +18,7 @@ def on_language_change(languagesMenu, label, btn1):
     elif selected_language == "TR":
         translations = tr.translations
     else:
-        # Varsayılan dil veya desteklenmeyen dil durumunda
-        translations = en.translations  # Varsayılan olarak İngilizce kullan
+        translations = tr.translations 
 
     label.config(text=translations["label_text"])
     btn1.config(text=translations["button_text"])
