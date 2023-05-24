@@ -1,22 +1,21 @@
 from pytube import YouTube
 import os
-import sys
 from pytube.exceptions import *
 
-def download(link):
+def download(link, lang):
     try:
         yt = YouTube(link)
 
         # extract only audio
         video = yt.streams.filter(only_audio=True).first()
 
-        destination = str(os.getcwd()) + "\downloads"
+        destination = str(os.getcwd()) + f'\{lang["destination"]}'
 
         base, ext = os.path.splitext(video.default_filename)
         mp3_file = base + '.mp3'
 
         if os.path.exists(mp3_file):
-            return "File is already exists"
+            return lang["exists"]
         
         # download the file
         out_file = video.download(output_path=destination)
@@ -27,15 +26,15 @@ def download(link):
         os.rename(out_file, new_file)
 
         # result of success
-        success_message = yt.title + " has been successfully downloaded."
+        success_message = yt.title + lang["success_message"]
         return success_message
 
     except VideoUnavailable:
-        return "Video is unavailable."
+        return lang["VideoUnavailable"]
 
     except RegexMatchError:
-        return "Invalid video URL."
+        return lang["RegexMatchError"]
     
     except Exception as e:
-        return "Beklenmeyen bir hata oluştu: " + str(e)
+        return lang["Exception"] + str(e)
 
