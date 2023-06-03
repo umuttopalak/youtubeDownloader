@@ -1,11 +1,11 @@
 from pytube import YouTube
 import os
-from pytube.exceptions import *
+from pytube.exceptions import * 
+from showThumbnail import show
 
 def download(link, lang):
     try:
         yt = YouTube(link)
-
         # extract only audio
         video = yt.streams.filter(only_audio=True).first()
 
@@ -14,9 +14,7 @@ def download(link, lang):
         base, ext = os.path.splitext(video.default_filename)
         mp3_file = base + '.mp3'
 
-        if os.path.exists(mp3_file):
-            return lang["exists"]
-        
+
         # download the file
         out_file = video.download(output_path=destination)
 
@@ -29,6 +27,8 @@ def download(link, lang):
         success_message = yt.title + lang["success_message"]
         return success_message
 
+    except FileExistsError:
+        return lang["exists"]
     except VideoUnavailable:
         return lang["VideoUnavailable"]
 
@@ -36,5 +36,6 @@ def download(link, lang):
         return lang["RegexMatchError"]
     
     except Exception as e:
+        print(str(e))
         return lang["Exception"] + str(e)
 

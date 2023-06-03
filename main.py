@@ -4,6 +4,8 @@ from downloader import download
 import languages.en as en
 import languages.tr as tr
 import language_utils as lang_utils
+from showThumbnail import show
+
 
 window = tk.Tk()
 window.title("MP3 Downloader")
@@ -15,8 +17,12 @@ def on_click_btn1():
     if link_checker(str(input.get())):
         result = download(str(input.get()) , lang_utils.get_translation(languagesMenu.get()))
         label.config(text=result)
+        
 
 languagesMenu = tk.StringVar()
+
+photoLabel = tk.Label()
+photoLabel.pack(side="top")
 
 label = tk.Label(window, text=lang_utils.get_translation(languagesMenu.get())['label_text'], font=('Calibri 15 bold'))
 label.pack(pady=20)
@@ -37,6 +43,7 @@ languagesMenu.set("Select Language")
 
 drop = tk.OptionMenu(window , languagesMenu , "TR" , "EN")
 drop.pack(side="right" , padx=20)
+
 
 
 languagesMenu.trace("w", lambda *args: lang_utils.on_language_change(languagesMenu, label, btn1))
