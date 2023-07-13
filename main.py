@@ -1,11 +1,11 @@
 import tkinter as tk
-from link_checker import link_checker
-from downloader import download
+
 import languages.en as en
 import languages.tr as tr
-import language_utils as lang_utils
-from showThumbnail import show
-
+import scripts.language_utils as lang_utils
+from scripts.downloader import download
+from scripts.link_checker import link_checker
+from scripts.showThumbnail import show
 
 window = tk.Tk()
 window.title("MP3 Downloader")
